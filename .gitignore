@@ -1,2 +1,4 @@
 .ropeproject
 *.pyc
+pypower.egg-info
+tags

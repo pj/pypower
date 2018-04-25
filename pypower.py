@@ -54,15 +54,32 @@ def nice_format():
     details = get_power_management_details()
     if details.remaining:
         s = details.remaining.total_seconds()
+        remaining = '{:02.0f}:{:02.0f}'.format(s // 3600, s % 3600 // 60)
+    else:
+        remaining = "-:--"
+
+    if details.source == "battery":
+        icon = "🔋"
+        extra = remaining
+    else:
+        icon = "🔌"
+        extra = "{:.0%}".format(details.percentage / 100.0)
+
+    return "{}  | {}".format(icon, extra)
+
+def basic_format():
+    details = get_power_management_details()
+    if details.remaining:
+        s = details.remaining.total_seconds()
         remaining = u'{:02.0f}:{:02.0f}'.format(s // 3600, s % 3600 // 60)
     else:
         remaining = u"-:--"
 
     if details.source == "battery":
-        icon = u"🔋"
+        icon = u"battery"
         extra = remaining
     else:
-        icon = u"🔌"
-        extra = u"{:.0%}".format(details.percentage)
+        icon = u"power"
+        extra = u"{:.0%}".format(details.percentage/100.0)
 
     return u"{} | {}".format(icon, extra)

@@ -13,7 +13,7 @@ setup(
     license = "BSD",
     keywords = "osx power management pmset",
     url = "http://github.com/pj/pypower",
-    packages=['pypower', 'tests'],
+    py_modules=['pypower'],
     long_description=read('README'),
     classifiers=[
         "Development Status :: 3 - Alpha",
